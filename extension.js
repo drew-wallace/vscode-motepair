@@ -29,7 +29,7 @@ function activate(context) {
         borderWidth: "0 0 0 2px",
         before: {
             backgroundColor: 'transparent',
-            contentIconPath: 'http://image.flaticon.com/icons/svg/188/188918.svg',
+            contentIconPath: '/Users/drewwallace/Downloads/pokeball.svg',
             height: '18px',
             width: '18px'
         }
@@ -42,7 +42,7 @@ function activate(context) {
         borderWidth: "0 2px 0 0",
         after: {
             backgroundColor: 'transparent',
-            contentIconPath: 'http://image.flaticon.com/icons/svg/188/188918.svg',
+            contentIconPath: '/Users/drewwallace/Downloads/pokeball.svg',
             height: '18px',
             width: '18px'
         }
@@ -96,6 +96,16 @@ function activate(context) {
     // });
 
     // FIGURE OUT PATH STUFF --------------------------------------------------->
+    vscode.window.onDidChangeActiveTextEditor(function(TextEditor){
+        console.log("Change active");
+        console.log(TextEditor.document.uri.path);
+        console.log(vscode.workspace.asRelativePath(TextEditor.document.uri));
+    });
+    vscode.workspace.onDidOpenTextDocument(function(TextDocument){
+        console.log("Open document");
+        console.log(TextDocument.uri.path);
+        console.log(vscode.workspace.asRelativePath(TextDocument.uri));
+    });
 
     context.subscriptions.push(highlight);
     context.subscriptions.push(refresh);
