@@ -11,26 +11,52 @@
     "Other"
   ],
   "activationEvents": [
-    "onCommand:extension.highlight",
-    "onCommand:extension.refresh",
-    "onCommand:extension.edit"
+    "onCommand:extension.motepair.connect",
+    "onCommand:extension.motepair.disconnect"
   ],
   "main": "./extension",
   "contributes": {
     "commands": [
       {
-        "command": "extension.highlight",
-        "title": "Highlight"
+        "command": "extension.motepair.connect",
+        "title": "Motepair: Connect"
       },
       {
-        "command": "extension.refresh",
-        "title": "Refresh"
-      },
-      {
-        "command": "extension.edit",
-        "title": "Edit"
+        "command": "extension.motepair.disconnect",
+        "title": "Motepair: Disconnect"
       }
-    ]
+    ],
+    "configuration": {
+      "type": "object",
+      "title": "Motepair configuration",
+      "properties": {
+        "motepair.serverAddress": {
+          "type": "string",
+          "default": "wss.motepair.com",
+          "description": "Server address"
+        },
+        "motepair.serverPort": {
+          "type": "integer",
+          "default": 80,
+          "description": "Server port number"
+        },
+        "motepair.secureConnection": {
+          "type": "boolean",
+          "default": false,
+          "description": "Secure connection"
+        },
+        "motepair.userEmail": {
+          "type": "string",
+          "default": "",
+          "description": "Email address"
+        },
+        "motepair.syncTabs": {
+          "type": "boolean",
+          "default": true,
+          "description": "Sync Tabs"
+        }
+      }
+    }
   },
   "scripts": {
     "postinstall": "node ./node_modules/vscode/bin/install"
@@ -42,6 +68,7 @@
     "copy-paste": "^1.3.0",
     "crypto": "0.0.3",
     "events": "^1.1.1",
+    "ottypes": "^1.0.3",
     "ws": "^1.1.1"
   }
 }
